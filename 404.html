@@ -7,19 +7,59 @@
 
 <p id="test"></p>
 
-<!--
-<button onclick="myFunction()">Replace document</button>
--->
+
+<button onclick="myFunction()">Reload mdEditor</button>
 
 <script>
 function myFunction() {
-  location.replace("https://www.w3schools.com")
+  location.replace("https://hmaier-fws.github.io/test-public")
 }
 
-let a = "The full URL of this page is: " + window.location.href;
-let b = "Page path is: " + window.location.pathname;
+function getPageInfo() {
+  let a = "Full page URL: " + window.location.href;
+  let b = "Page path " + window.location.pathname;
+  let c = "Host: " + window.location.pathname;
 
-document.getElementById("test").innerHTML = a + "<br>" + b;
+  //pageParams = [a, b, c];
+  
+  let pageParamsObj = {url: a, path: b, host: c};
+  let pageParamsArr = [a, b, c];
+
+  
+  //document.getElementById("test").innerHTML = a + "<br>" + b + "<br>" + c;
+  
+  return pageParamsArr;
+  //return pageParamsObj;
+
+}
+
+function showPageInfo() {
+  //alert (getPageInfo().a);
+  
+  //document.getElementById("test").innerHTML = getPageInfo()[0] + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
+  
+  // document.getElementById("test").innerHTML = getPageInfo()["path"];
+//  + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
+
+  document.getElementById("test").innerHTML = getPageInfo()[0] + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
+
+}
+
+
+showPageInfo();
+//getPageInfo();
+
+let path = getPageInfo()[1];
+
+let pos1 = path.indexOf(":");
+let sub1 = path.substr(pos1+2);
+
+let pos2 = sub1.indexOf("/");
+let rootDir = sub1.slice(0, pos2+1);
+
+let endDir = sub1.slice(pos2+1);
+
+alert("path: " + path + "\n root: " + rootDir + "\n end: " + endDir);
 
 </script>
 
