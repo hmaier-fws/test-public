@@ -1,1 +1,27 @@
-<h1>Test 404</h1>
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Test 404</h2>
+
+
+<p id="test"></p>
+
+<!--
+<button onclick="myFunction()">Replace document</button>
+-->
+
+<script>
+function myFunction() {
+  location.replace("https://www.w3schools.com")
+}
+
+let a = "The full URL of this page is: " + window.location.href;
+let b = "Page path is: " + window.location.pathname;
+
+document.getElementById("test").innerHTML = a + "<br>" + b;
+
+</script>
+
+</body>
+</html> 
