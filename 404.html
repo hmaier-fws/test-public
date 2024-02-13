@@ -16,20 +16,20 @@ function myFunction() {
 }
 
 function getPageInfo() {
-  let a = "Full page URL: " + window.location.href;
-  let b = "Page path " + window.location.pathname;
-  let c = "Host: " + window.location.pathname;
+  let url = window.location.href;       // Get fully qualified page URL 
+  let host = window.location.hostname;  // Get host name 
+  let path = window.location.pathname;  // Get page path 
 
   //pageParams = [a, b, c];
   
-  let pageParamsObj = {url: a, path: b, host: c};
-  let pageParamsArr = [a, b, c];
+  let pageParamsObj = {url: url, path: path, host: host};
+  let pageParamsArr = [url, host, path];
 
   
   //document.getElementById("test").innerHTML = a + "<br>" + b + "<br>" + c;
   
-  return pageParamsArr;
-  //return pageParamsObj;
+  //return pageParamsArr;
+  return pageParamsObj;
 
 }
 
@@ -41,15 +41,15 @@ function showPageInfo() {
   // document.getElementById("test").innerHTML = getPageInfo()["path"];
 //  + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
 
-  document.getElementById("test").innerHTML = getPageInfo()[0] + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
+  document.getElementById("test").innerHTML = "url: " + getPageInfo()[0] + "<br> host:" + getPageInfo()[1] + "<br> path: " + getPageInfo()[2];
 
 }
 
 
-showPageInfo();
+//showPageInfo();
 //getPageInfo();
 
-let path = getPageInfo()[1];
+let path = getPageInfo()["path"];
 
 let pos1 = path.indexOf(":");
 let sub1 = path.substr(pos1+2);
@@ -59,7 +59,7 @@ let rootDir = sub1.slice(0, pos2+1);
 
 let endDir = sub1.slice(pos2+1);
 
-alert("path: " + path + "\n root: " + rootDir + "\n end: " + endDir);
+alert("url: " + getPageInfo()["url"] + "\n path: " + path + "\n host: " + getPageInfo()["host"] + "\n root: " + rootDir + "\n end: " + endDir);
 
 </script>
 
