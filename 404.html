@@ -5,49 +5,32 @@
 <h2>Test 404</h2>
 
 
-<p id="test"></p>
+<h2>Text 1</h2>
+<p id="text1">Text area 1</p>
+<h2>Text 2</h2>
+<p id="text2">Text area 2</p>
 
 
-<button onclick="myFunction()">Reload mdEditor</button>
+
+<button onclick="redirectPage()">Reload mdEditor</button>
 
 <script>
-function myFunction() {
+
+//
+// Sample url: https://hmaier-fws.github.io/test-public/dashboard
+//
+
+
+
+function redirectPage() {
   location.replace("https://hmaier-fws.github.io/test-public")
 }
 
-function getPageInfo() {
-  let url = window.location.href;       // Get fully qualified page URL 
-  let host = window.location.hostname;  // Get host name 
-  let path = window.location.pathname;  // Get page path 
-
-  //pageParams = [a, b, c];
-  
-  let pageParamsObj = {url: url, path: path, host: host};
-  let pageParamsArr = [url, host, path];
-
-  
-  //document.getElementById("test").innerHTML = a + "<br>" + b + "<br>" + c;
-  
-  //return pageParamsArr;
-  return pageParamsObj;
-
-}
-
-function showPageInfo() {
-  //alert (getPageInfo().a);
-  
-  //document.getElementById("test").innerHTML = getPageInfo()[0] + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
-  
-  // document.getElementById("test").innerHTML = getPageInfo()["path"];
-//  + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
-
-  document.getElementById("test").innerHTML = "url: " + getPageInfo()[0] + "<br> host:" + getPageInfo()[1] + "<br> path: " + getPageInfo()[2];
-
-}
 
 
-//showPageInfo();
-//getPageInfo();
+
+showPageInfo();
+//showPageInfo2();
 
 let path = getPageInfo()["path"];
 
@@ -60,6 +43,59 @@ let rootDir = sub1.slice(0, pos2+1);
 let endDir = sub1.slice(pos2+1);
 
 alert("url: " + getPageInfo()["url"] + "\n path: " + path + "\n host: " + getPageInfo()["host"] + "\n root: " + rootDir + "\n end: " + endDir);
+
+
+let newUrl = getPageInfo()["prot"] + "//" + getPageInfo()["host"] + path;
+alert(newUrl);
+
+
+function getPageInfo() {
+  let url = window.location.href;       // Get fully qualified page URL 
+  let host = window.location.hostname;  // Get host name 
+  let path = window.location.pathname;  // Get page path 
+  let prot = window.location.protocol;  // Get page protocol
+
+  //pageParams = [a, b, c];
+  
+  let pageParamsObj = {url: url, path: path, host: host, prot: prot};
+  let pageParamsArr = [url, host, path];
+
+  
+  //document.getElementById("test").innerHTML = a + "<br>" + b + "<br>" + c;
+  
+  //return pageParamsArr;
+  return pageParamsObj;
+
+}
+
+function showPageInfo2() {
+  let pageInfo = getPageInfo();
+  let info = "";
+  
+  for (let x in pageInfo) {
+    info += "-- name = " + x + ", value = " + pageInfo[x] + "<br>";
+  };
+  
+  document.getElementById("text1").innerHTML = info;
+  //alert("Object properties");
+  
+  pageInfo.url = '"This is some \"quoted\" text\path\abc and more"';
+  
+  document.getElementById("text2").innerHTML = JSON.stringify(pageInfo);
+
+}
+
+
+function showPageInfo() {
+  //alert (getPageInfo().a);
+  
+  //document.getElementById("text1").innerHTML = getPageInfo()[0] + "<br>" + getPageInfo()[1] + "<br>" + getPageInfo()[2];
+  
+  document.getElementById("text1").innerHTML = "url: " + getPageInfo()["url"] + "<br> host:" + getPageInfo()["host"] + "<br> path: " + getPageInfo()["path"] + "<br> protocol: " + getPageInfo()["prot"];
+
+  //document.getElementById("test").innerHTML = "url: " + getPageInfo()[0] + "<br> host:" + getPageInfo()[1] + "<br> path: " + getPageInfo()[2];
+
+}
 
 </script>
 
